@@ -49,14 +49,14 @@ def main():
 
         if choice == "1":
             description = input("Enter task description: ")
-            due_date = input("Enter due date (YYYY-MM-DD): ")
+            due_date = input("Enter a due date (DD.MM.YYYY): ")
             priority = input("Enter priority level (High, Medium, Low): ")
             add_task(description, due_date, priority)
         elif choice == "2":
             view_all_tasks()
         elif choice == "3":
             print("******************************")
-            description = input("Enter the task description: ")
+            description = input("Enter a task description: ")
             view_task_by_description(description)
             print("******************************")
         else:
