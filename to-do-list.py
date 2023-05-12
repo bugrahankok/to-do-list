@@ -39,13 +39,34 @@ def view_task_by_description(description):
             print("Due Date: ", task["due_date"])
             print("Priority: ", task["priority"])
 
+def edit_task(description):
+    tasks = load_tasks()
+    for task in tasks:
+        if task["description"] == description:
+            tasks.remove(task)
+        break
+    save_tasks(tasks)
+
+def delete_task(description):
+    tasks = load_tasks()
+    for task in tasks:
+        if task["description"] == description:
+            tasks.remove(task)
+            print("Task has been deleted!")
+        else:
+            print("The task could not be deleted!")
+        break
+    save_tasks(tasks)
+
 def main():
     while True:
         print("1. Add New Task")
         print("2. Show All Tasks")
         print("3. Show Task by Name")
+        print("4. Edit Task")
+        print("5. Delete Task")
 
-        choice = input("\nChoice (1-2-3): ")
+        choice = input("\nChoice (1-2-3-4-5): ")
 
         if choice == "1":
             description = input("Enter task description: ")
@@ -58,6 +79,18 @@ def main():
             print("******************************")
             description = input("Enter a task description: ")
             view_task_by_description(description)
+            print("******************************")
+        elif choice == "4":
+            description = input("Enter the task name for edit: ")
+            edit_task(description)
+            description = input("Enter task description: ")
+            due_date = input("Enter a due date (DD.MM.YYYY): ")
+            priority = input("Enter priority level (High, Medium, Low): ")
+            add_task(description, due_date, priority)
+        elif choice == "5":
+            print("******************************")
+            description = input("Enter the task name for delete: ")
+            delete_task(description)
             print("******************************")
         else:
             print("Error!")
